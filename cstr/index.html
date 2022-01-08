@@ -31,14 +31,26 @@
         const debug = params.get("debug") === "true";
 
         // set on load()
-        var cr_gauge = Gauge(
+
+        let cr_gauge = undefined;
+        let tr_gauge = undefined;
+        let tc_gauge = undefined;
+
+        // utility setAttributes
+        function setAttributes(el, attributes) {
+            for (var attr in attributes) el.setAttribute(attr, attributes[attr]);
+        }
+
+        // setup the document
+        function setup() {          
+            cr_gauge = Gauge(
                 document.getElementById("cr_gauge"),
                 {
                     min: -0.1,
                     max: 12,
                     dialStartAngle: 180,
                     dialEndAngle: 0,
-                    value: Cref,
+                    value: 0,
                     viewBox: "0 0 100 57",
                     color: function (value) {
                         if (value < 20) {
@@ -54,14 +66,14 @@
                 }
             );
             
-        var tr_gauge = Gauge(
+        tr_gauge = Gauge(
                 document.getElementById("cr_gauge"),
                 {
                     min: 10,
                     max: 800,
                     dialStartAngle: 180,
                     dialEndAngle: 0,
-                    value: Tref,
+                    value: 0,
                     viewBox: "0 0 100 57",
                     color: function (value) {
                         if (value < 200) {
@@ -77,7 +89,7 @@
                 }
             );
 
-           var tc_gauge = Gauge(
+        tc_gauge = Gauge(
                 document.getElementById("tc_gauge"),
                 {
                     min: 10,
@@ -100,14 +112,6 @@
                 }
             );
 
-        // utility setAttributes
-        function setAttributes(el, attributes) {
-            for (var attr in attributes) el.setAttribute(attr, attributes[attr]);
-        }
-
-        // setup the document
-        function setup() {          
-
             // adjust our colors based upon theme.
             if (darkMode) {
                 document.body.style.backgroundColor = "#333";
@@ -118,8 +122,6 @@
             // loading text
             const out = document.getElementById("out");
             out.textContent = "Waiting...";
-
-
             // initial update
             update({
                 state: {
@@ -140,8 +142,8 @@
             // convert message to formatted JSON text for display
             const str = JSON.stringify(data, null, 2);
 
-            const out = document.getElementById("out");
-            out.textContent = str;
+           // const out = document.getElementById("out");
+           // out.textContent = str;
 
             // update positions of graphical elements
             // Cr : product specific residual concentration mixture of A and B
