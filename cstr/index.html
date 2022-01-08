@@ -14,18 +14,7 @@
         const debug = params.get("debug") === "true";
 
         // set on load()
-        let cr_gauge = undefined;
-        let tr_gauge = undefined;
-        let tc_gauge = undefined;
-
-        // utility setAttributes
-        function setAttributes(el, attributes) {
-            for (var attr in attributes) el.setAttribute(attr, attributes[attr]);
-        }
-
-        // setup the document
-        function setup() {
-            cr_gauge = Gauge(
+        var cr_gauge = Gauge(
                 document.getElementById("cr_gauge"),
                 {
                     min: -0.1,
@@ -47,8 +36,8 @@
                     }
                 }
             );
-
-            tr_gauge = Gauge(
+            
+        var tr_gauge = Gauge(
                 document.getElementById("cr_gauge"),
                 {
                     min: 10,
@@ -71,7 +60,7 @@
                 }
             );
 
-            tc_gauge = Gauge(
+           var tc_gauge = Gauge(
                 document.getElementById("tc_gauge"),
                 {
                     min: 10,
@@ -93,6 +82,14 @@
                     }
                 }
             );
+
+        // utility setAttributes
+        function setAttributes(el, attributes) {
+            for (var attr in attributes) el.setAttribute(attr, attributes[attr]);
+        }
+
+        // setup the document
+        function setup() {          
 
             // adjust our colors based upon theme.
             if (darkMode) {
