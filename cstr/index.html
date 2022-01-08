@@ -1,6 +1,23 @@
 <html>
 
 <head>
+   
+</head>
+
+<body>
+    <pre id="out" style="font-size: x-small; display: box; position: absolute"></pre>
+    <p>
+        Residual Concentration:
+    <div id="cr_gauge" class="gauge-container two"></div>
+    </p>
+    <p>
+        Reactor Temperature:
+    <div id="tr_gauge" class="gauge-container two"></div>
+    </p>
+    <p>
+        Reactor cooling jacket coolant temperature:
+    <div id="tc_gauge" class="gauge-container two"></div>
+    </p>
     <script type="text/javascript" src="../src/gauge.js"> </script>
     <script language="JavaScript">
         /*
@@ -157,22 +174,6 @@
             );
         }
     </script>
-</head>
-
-<body>
-    <pre id="out" style="font-size: x-small; display: box; position: absolute"></pre>
-    <p>
-        Residual Concentration:
-    <div id="cr_gauge" class="gauge-container two"></div>
-    </p>
-    <p>
-        Reactor Temperature:
-    <div id="tr_gauge" class="gauge-container two"></div>
-    </p>
-    <p>
-        Reactor cooling jacket coolant temperature:
-    <div id="tc_gauge" class="gauge-container two"></div>
-    </p>
     <script language="JavaScript">
         init();
     </script>
