@@ -1,0 +1,184 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="../src/gauge.js"> </script>
+    <script language="JavaScript">
+        /*
+         * Copyright: Microsoft 2019
+         *
+         * An example visualizer for use with CSTR simulators.
+         */
+        const svgns = "http://www.w3.org/2000/svg";
+        const params = new URLSearchParams(window.location.search);
+        const darkMode = params.get("_theme") === "dark";
+        const debug = params.get("debug") === "true";
+
+        // set on load()
+        let cr_gauge = undefined;
+        let tr_gauge = undefined;
+        let tc_gauge = undefined;
+
+        // utility setAttributes
+        function setAttributes(el, attributes) {
+            for (var attr in attributes) el.setAttribute(attr, attributes[attr]);
+        }
+
+        // setup the document
+        function setup() {
+            cr_gauge = Gauge(
+                document.getElementById("cr_gauge"),
+                {
+                    min: -0.1,
+                    max: 12,
+                    dialStartAngle: 180,
+                    dialEndAngle: 0,
+                    value: Cref,
+                    viewBox: "0 0 100 57",
+                    color: function (value) {
+                        if (value < 20) {
+                            return "#5ee432";
+                        } else if (value < 40) {
+                            return "#fffa50";
+                        } else if (value < 60) {
+                            return "#f7aa38";
+                        } else {
+                            return "#ef4655";
+                        }
+                    }
+                }
+            );
+
+            tr_gauge = Gauge(
+                document.getElementById("cr_gauge"),
+                {
+                    min: 10,
+                    max: 800,
+                    dialStartAngle: 180,
+                    dialEndAngle: 0,
+                    value: Tref,
+                    viewBox: "0 0 100 57",
+                    color: function (value) {
+                        if (value < 200) {
+                            return "#5ee432";
+                        } else if (value < 400) {
+                            return "#fffa50";
+                        } else if (value < 600) {
+                            return "#f7aa38";
+                        } else {
+                            return "#ef4655";
+                        }
+                    }
+                }
+            );
+
+            tc_gauge = Gauge(
+                document.getElementById("tc_gauge"),
+                {
+                    min: 10,
+                    max: 800,
+                    dialStartAngle: 180,
+                    dialEndAngle: 0,
+                    value: 297.9798,
+                    viewBox: "0 0 100 57",
+                    color: function (value) {
+                        if (value < 200) {
+                            return "#5ee432";
+                        } else if (value < 400) {
+                            return "#fffa50";
+                        } else if (value < 600) {
+                            return "#f7aa38";
+                        } else {
+                            return "#ef4655";
+                        }
+                    }
+                }
+            );
+
+            // adjust our colors based upon theme.
+            if (darkMode) {
+                document.body.style.backgroundColor = "#333";
+                document.body.style.color = "white";
+
+            }
+
+            // loading text
+            const out = document.getElementById("out");
+            out.textContent = "Waiting...";
+
+
+            // initial update
+            update({
+                state: {
+                    Cr: 2.142201781772368,
+                    Cref: 2,
+                    Tc: 297.9798,
+                    Tr: 200,
+                    Tref: 373.1311262173828
+                },
+                action: {
+                    Tc_adjust: 0.12269001454114914,
+                },
+            });
+        }
+
+        // update the visualization from state and action data
+        function update(data) {
+            // convert message to formatted JSON text for display
+            const str = JSON.stringify(data, null, 2);
+
+            const out = document.getElementById("out");
+            out.textContent = str;
+
+            // update positions of graphical elements
+            // Cr : product specific residual concentration mixture of A and B
+            const Cr = data.state[Cr];
+            const Tr = data.state[Tr];
+            const Tc = data.state[Tc];
+
+            //const tankLevelElem = svgDoc.getElementById("cr_gauge");
+            cr_gauge.setValueAnimated(Cr, 3);
+
+            tr_gauge.setValueAnimated(Tr, 3);
+
+            tc_gauge.setValueAnimated(Tc, 3);
+        }
+
+        function init() {
+            // on load
+            window.addEventListener("load", () => {
+                setup();
+            });
+
+            // on message
+            window.addEventListener(
+                "message",
+                (event) => {
+                    const data = JSON.parse(event.data);
+                    update(data);
+                },
+                false
+            );
+        }
+    </script>
+</head>
+
+<body>
+    <pre id="out" style="font-size: x-small; display: box; position: absolute"></pre>
+    <p>
+        Residual Concentration:
+    <div id="cr_gauge" class="gauge-container two"></div>
+    </p>
+    <p>
+        Reactor Temperature:
+    <div id="tr_gauge" class="gauge-container two"></div>
+    </p>
+    <p>
+        Reactor cooling jacket coolant temperature:
+    <div id="tc_gauge" class="gauge-container two"></div>
+    </p>
+    <script language="JavaScript">
+        init();
+    </script>
+</body>
+
+</html>

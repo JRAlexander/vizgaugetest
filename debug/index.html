@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <script language="JavaScript">
+
+      function setup() {
+        const out = document.getElementById("out");
+        out.textContent = "Waiting...";
+      }
+
+      // update the visualization from state and action data
+      function update(data) {
+        // convert message to formatted JSON text for display
+        const str = JSON.stringify(data, null, 2);
+        const out = document.getElementById("out");
+        out.textContent = str;
+      }
+
+      function init() {
+        // on load
+        window.addEventListener("load", () => {
+          setup();
+        });
+
+        // on message
+        window.addEventListener(
+          "message",
+          (event) => {
+            const data = JSON.parse(event.data);
+            update(data);
+          },
+          false
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <p>debug viewer only • no visualizer</p>
+    <pre
+      id="out"
+      style="font-size: x-small; display: box; position: absolute"
+    ></pre>
+    <script language="JavaScript">
+      init();
+    </script>
+  </body>
+</html>
