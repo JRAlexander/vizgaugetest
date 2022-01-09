@@ -28,6 +28,7 @@
         function setup() {
             svgDoc = document.getElementById("imported-svg").contentDocument;
         if (svgDoc) {
+            try {
             crgauge = Gauge(
                 document.getElementById("cr_gauge"),
                 {
@@ -102,6 +103,9 @@
                 document.body.style.backgroundColor = "#333";
                 document.body.style.color = "white";
             }
+        } catch (e) {
+                    // ignore
+                }
         }
             // loading text
             const out = document.getElementById("out");
