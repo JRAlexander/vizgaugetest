@@ -13,11 +13,16 @@
         const darkMode = params.get("_theme") === "dark";
         const debug = params.get("debug") === "true";
 
-        // set on load()
+   // optional overrides for parameter names
+        const crKey = "Cr";
+        const trKey = "Tr";
+        const tcKey = "Tc";
 
-        const crgauge = undefined;
-        const trgauge = undefined;
-        const tcgauge = undefined;
+        // set on load()
+        let svgDoc = undefined;
+        let crgauge = undefined;
+        let trgauge = undefined;
+        let tcgauge = undefined;
 
         // utility setAttributes
         function setAttributes(el, attributes) {
@@ -119,18 +124,18 @@
             // convert message to formatted JSON text for display
             const str = JSON.stringify(data, null, 2);
 
-            //  if (debug) {
+            if (debug) {
             const out = document.getElementById("out");
-            out.textContent = str.Cr;
-            // }
+            out.textContent = str;
+            }
             svgDoc = document.getElementById("imported-svg").contentDocument;
             if (svgDoc) {
                 try {
                     // update positions of graphical elements
                     // Cr : product specific residual concentration mixture of A and B
-                    const Cr = data.state[Cr].value;
-                    const Tr = data.state[Tr].value;
-                    const Tc = data.state[Tc].value;
+                    const Cr = parseNumber(data.state[crKey]);
+                    const Tr = parseNumber(data.state[trKey]);
+                    const Tc = parseNumber(data.state[tcKey]);
                     crgauge = Gauge(
                         document.getElementById("cr_gauge"),
                         {
