@@ -26,7 +26,8 @@
 
         // setup the document
         function setup() {
-            var pad = function(tar) {};
+            svgDoc = document.getElementById("imported-svg").contentDocument;
+        if (svgDoc) {
             crgauge = Gauge(
                 document.getElementById("cr_gauge"),
                 {
@@ -101,7 +102,7 @@
                 document.body.style.backgroundColor = "#333";
                 document.body.style.color = "white";
             }
-
+        }
             // loading text
             const out = document.getElementById("out");
             out.textContent = "Waiting...";
@@ -114,7 +115,8 @@
 
             // const out = document.getElementById("out");
             // out.textContent = str;
-            if (crgauge) {
+            svgDoc = document.getElementById("imported-svg").contentDocument;
+        if (svgDoc) {
                 try {
                     // update positions of graphical elements
                     // Cr : product specific residual concentration mixture of A and B
@@ -166,6 +168,13 @@
         Reactor cooling jacket coolant temperature:
     <div id="tc_gauge" class="gauge-container two"></div>
     </p>
+    <object
+    data="simpleTank.svg"
+    type="image/svg+xml"
+    id="imported-svg"
+    width="100%"
+    height="100%"
+  ></object>
     <script language="JavaScript">
         init();
     </script>
