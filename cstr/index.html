@@ -108,8 +108,10 @@
                 }
         }
             // loading text
-            const out = document.getElementById("out");
-            out.textContent = "Waiting...";
+            if (debug) {
+          const out = document.getElementById("out");
+          out.textContent = "Waiting...";
+        }
         }
 
         // update the visualization from state and action data
@@ -117,8 +119,10 @@
             // convert message to formatted JSON text for display
             const str = JSON.stringify(data, null, 2);
 
-            // const out = document.getElementById("out");
-            // out.textContent = str;
+          //  if (debug) {
+          const out = document.getElementById("out");
+          out.textContent = str.Cr;
+       // }
             svgDoc = document.getElementById("imported-svg").contentDocument;
         if (svgDoc) {
                 try {

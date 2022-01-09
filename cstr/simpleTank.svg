@@ -1,5 +1,5 @@
 <svg width="600" height="300" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="simpleTank">
-<rect id="level" x="250" y="60" width="100" height="180" fill="white"/>
+<rect id="level" x="250" y="60" width="1" height="1" fill="#F4F3F1"/>
 </g>
 </svg>
