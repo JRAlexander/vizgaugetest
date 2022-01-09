@@ -1,23 +1,6 @@
 <html>
 
 <head>
-   
-</head>
-
-<body>
-    <pre id="out" style="font-size: x-small; display: box; position: absolute"></pre>
-    <p>
-        Residual Concentration:
-    <div id="cr_gauge" class="gauge-container two"></div>
-    </p>
-    <p>
-        Reactor Temperature:
-    <div id="tr_gauge" class="gauge-container two"></div>
-    </p>
-    <p>
-        Reactor cooling jacket coolant temperature:
-    <div id="tc_gauge" class="gauge-container two"></div>
-    </p>
     <script type="text/javascript" src="./src/gauge.js"> </script>
     <script language="JavaScript">
         /*
@@ -32,9 +15,9 @@
 
         // set on load()
 
-        let cr_gauge = undefined;
-        let tr_gauge = undefined;
-        let tc_gauge = undefined;
+        let crgauge = undefined;
+        let trgauge = undefined;
+        let tcgauge = undefined;
 
         // utility setAttributes
         function setAttributes(el, attributes) {
@@ -42,8 +25,9 @@
         }
 
         // setup the document
-        function setup() {          
-            cr_gauge = Gauge(
+        function setup() {
+            var pad = function(tar) {};
+            crgauge = Gauge(
                 document.getElementById("cr_gauge"),
                 {
                     min: -0.1,
@@ -65,8 +49,8 @@
                     }
                 }
             );
-            
-        tr_gauge = Gauge(
+
+            trgauge = Gauge(
                 document.getElementById("cr_gauge"),
                 {
                     min: 10,
@@ -89,7 +73,7 @@
                 }
             );
 
-        tc_gauge = Gauge(
+            tcgauge = Gauge(
                 document.getElementById("tc_gauge"),
                 {
                     min: 10,
@@ -116,25 +100,11 @@
             if (darkMode) {
                 document.body.style.backgroundColor = "#333";
                 document.body.style.color = "white";
-
             }
 
             // loading text
             const out = document.getElementById("out");
             out.textContent = "Waiting...";
-            // initial update
-            update({
-                state: {
-                    Cr: 2.142201781772368,
-                    Cref: 2,
-                    Tc: 297.9798,
-                    Tr: 200,
-                    Tref: 373.1311262173828
-                },
-                action: {
-                    Tc_adjust: 0.12269001454114914,
-                },
-            });
         }
 
         // update the visualization from state and action data
@@ -142,23 +112,27 @@
             // convert message to formatted JSON text for display
             const str = JSON.stringify(data, null, 2);
 
-           // const out = document.getElementById("out");
-           // out.textContent = str;
+            // const out = document.getElementById("out");
+            // out.textContent = str;
+            if (crgauge) {
+                try {
+                    // update positions of graphical elements
+                    // Cr : product specific residual concentration mixture of A and B
+                    const Cr = data.state[Cr];
+                    const Tr = data.state[Tr];
+                    const Tc = data.state[Tc];
 
-            // update positions of graphical elements
-            // Cr : product specific residual concentration mixture of A and B
-            const Cr = data.state[Cr];
-            const Tr = data.state[Tr];
-            const Tc = data.state[Tc];
+                    //const tankLevelElem = svgDoc.getElementById("cr_gauge");
+                    crgauge.setValueAnimated(Cr, 3);
 
-            //const tankLevelElem = svgDoc.getElementById("cr_gauge");
-            cr_gauge.setValueAnimated(Cr, 3);
+                    trgauge.setValueAnimated(Tr, 3);
 
-            tr_gauge.setValueAnimated(Tr, 3);
-
-            tc_gauge.setValueAnimated(Tc, 3);
+                    tcgauge.setValueAnimated(Tc, 3);
+                } catch (e) {
+                    // ignore
+                }
+            }
         }
-
         function init() {
             // on load
             window.addEventListener("load", () => {
@@ -176,6 +150,22 @@
             );
         }
     </script>
+</head>
+
+<body>
+    <pre id="out" style="font-size: x-small; display: box; position: absolute"></pre>
+    <p>
+        Residual Concentration:
+    <div id="cr_gauge" class="gauge-container two"></div>
+    </p>
+    <p>
+        Reactor Temperature:
+    <div id="tr_gauge" class="gauge-container two"></div>
+    </p>
+    <p>
+        Reactor cooling jacket coolant temperature:
+    <div id="tc_gauge" class="gauge-container two"></div>
+    </p>
     <script language="JavaScript">
         init();
     </script>
