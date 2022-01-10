@@ -21,13 +21,13 @@
         const Cr = 0;
                 
         // Cref: desired concentration
-        const Cref = 0;
+        const Cref = 8;
                 
         // Tr : reactor temperature
         const Tr = 0;
 
         //Tref: desired temperature
-        const Tref = 0;
+        const Tref = 373.13;
 
         // Tc : cooling jacket medium temperature
         const Tc = 0;
@@ -53,16 +53,17 @@
                         dialEndAngle: 0,
                         easing: true,
                         value: 0,
+                        refValue: Cref,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                             return "Cr: " + value;
+                             return "Cr: " + value +  " / Cref:" + this.refValue;
                         },
                         color: function (value) {
-                            if (value < Cref) {
+                            if (value < this.refValue) {
                                 return "#fffa50";
-                            } else if (value == Cref) {
+                            } else if (value == this.refValue) {
                                 return "#5ee432";
-                            } else if (value < Cref) {
+                            } else if (value < this.refValue) {
                                 return "#ef4655";
                             } else {
                                 return "#f7aa38";
@@ -81,15 +82,16 @@
                         easing: true,
                         value: 0,
                         viewBox: "0 0 100 57",
+                        refValue: Tref,
                         label: function (value) {
-                            return "Tr: " + value;
+                            return "Tr: " + value +  " / Tref:" + this.refValue;
                         },
                         color: function (value) {
-                            if (value < Tref) {
+                            if (value < this.refValue) {
                                 return "#fffa50";
-                            } else if (value == Tref) {
+                            } else if (value == this.refValue) {
                                 return "#5ee432";
-                            } else if (value < Tref) {
+                            } else if (value < this.refValue) {
                                 return "#ef4655";
                             } else {
                                 return "#f7aa38";
