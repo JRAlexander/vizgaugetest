@@ -124,10 +124,10 @@
             // convert message to formatted JSON text for display
             const str = JSON.stringify(data, null, 2);
 
-            if (debug) {
+          //  if (debug) {
             const out = document.getElementById("out");
             out.textContent = str;
-            }
+          //  }
             svgDoc = document.getElementById("imported-svg").contentDocument;
             if (svgDoc) {
                 try {
