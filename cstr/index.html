@@ -13,17 +13,28 @@
         const darkMode = params.get("_theme") === "dark";
         const debug = params.get("debug") === "true";
 
-        // optional overrides for parameter names
-        const crKey = "Cr";
-        const trKey = "Tr";
-        const tcKey = "Tc";
-
         // set on load()
-        let svgDoc = undefined;
         let crgauge = undefined;
         let trgauge = undefined;
         let tcgauge = undefined;
 
+        const Cr = 0;
+                
+        // Cref: desired concentration
+        const Cref = 0;
+                
+        // Tr : reactor temperature
+        const Tr = 0;
+
+        //Tref: desired temperature
+        const Tref = 0;
+
+        // Tc : cooling jacket medium temperature
+        const Tc = 0;
+                
+        // Tc_adjust: coolant temp adjustment
+        const Tc_Adjust = 0;
+        
         // utility setAttributes
         function setAttributes(el, attributes) {
             for (var attr in attributes) el.setAttribute(attr, attributes[attr]);
@@ -46,14 +57,14 @@
                              return "Cr: " + value;
                         },
                         color: function (value) {
-                            if (value < 20) {
-                                return "#5ee432";
-                            } else if (value < 40) {
+                            if (value < Cref) {
                                 return "#fffa50";
-                            } else if (value < 60) {
-                                return "#f7aa38";
-                            } else {
+                            } else if (value == Cref) {
+                                return "#5ee432";
+                            } else if (value < Cref) {
                                 return "#ef4655";
+                            } else {
+                                return "#f7aa38";
                             }
                         }
                     }
@@ -72,14 +83,14 @@
                             return "Tr: " + value;
                         },
                         color: function (value) {
-                            if (value < 200) {
-                                return "#5ee432";
-                            } else if (value < 400) {
+                            if (value < Tref) {
                                 return "#fffa50";
-                            } else if (value < 600) {
-                                return "#f7aa38";
-                            } else {
+                            } else if (value == Tref) {
+                                return "#5ee432";
+                            } else if (value < Tref) {
                                 return "#ef4655";
+                            } else {
+                                return "#f7aa38";
                             }
                         }
                     }
@@ -98,15 +109,7 @@
                             return "Tc: " + value;
                         },
                         color: function (value) {
-                            if (value < 200) {
-                                return "#5ee432";
-                            } else if (value < 400) {
-                                return "#fffa50";
-                            } else if (value < 600) {
-                                return "#f7aa38";
-                            } else {
-                                return "#ef4655";
-                            }
+                                return "#46f063";
                         }
                     }
                 );
@@ -153,22 +156,22 @@
             try {
                 // update positions of graphical elements
                 // Cr : product specific residual concentration mixture of A and B
-                const Cr = parseFloat(data.state["Cr"].toFixed(4));
+                const Cr = parseFloat(data.state["Cr"].toFixed(2));
                 
                 // Cref: desired concentration
-                const Cref = parseFloat(data.state["Cref"].toFixed(4));
+                const Cref = parseFloat(data.state["Cref"].toFixed(2));
                 
                 // Tr : reactor temperature
-                const Tr = parseFloat(data.state["Tr"].toFixed(4));
+                const Tr = parseFloat(data.state["Tr"].toFixed(1));
 
                 //Tref: desired temperature
-                const Tref = parseFloat(data.state["Tref"].toFixed(4));
+                const Tref = parseFloat(data.state["Tref"].toFixed(1));
 
                 // Tc : cooling jacket medium temperature
-                const Tc = parseFloat(data.state["Tc"].toFixed(4));
+                const Tc = parseFloat(data.state["Tc"].toFixed(1));
                 
                 // Tc_adjust: coolant temp adjustment
-                const Tc_Adjust = parseFloat(data.action["Tc_adjust"].toFixed(4));
+                const Tc_Adjust = parseFloat(data.action["Tc_adjust"].toFixed(1));
                 
                 //Update gauge values
                 crgauge.setValue(Cr, 1);
