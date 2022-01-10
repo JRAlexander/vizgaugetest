@@ -41,8 +41,8 @@
 
         // setup the document
         function setup() {
-
             try {
+                //https://github.com/naikus/svg-gauge/blob/master/src/gauge.js
                 crgauge = Gauge(
                     document.getElementById("cr_gauge"),
                     {
@@ -57,15 +57,7 @@
                             return "Cr: " + value;
                         },
                         color: function (value) {
-                            if (value < 0.25) {
-                                return "#5ee432"; //Green
-                            } else if (value == 0.25) {
-                                return "#fffa50"; //Yellow
-                            } else if (value > 0.25) {
-                                return "#ef4655"; //Red
-                            } else {
                                 return "#f7aa38"; //Orange
-                            }
                         }
                     }
                 );
