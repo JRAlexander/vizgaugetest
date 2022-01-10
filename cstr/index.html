@@ -19,10 +19,10 @@
         let tcgauge = undefined;
 
         const Cr = 0;
-                
+
         // Cref: desired concentration
         const Cref = 8;
-                
+
         // Tr : reactor temperature
         const Tr = 0;
 
@@ -31,10 +31,9 @@
 
         // Tc : cooling jacket medium temperature
         const Tc = 0;
-                
+
         // Tc_adjust: coolant temp adjustment
         const Tc_Adjust = 0;
-        
         // utility setAttributes
         function setAttributes(el, attributes) {
             for (var attr in attributes) el.setAttribute(attr, attributes[attr]);
@@ -53,20 +52,19 @@
                         dialEndAngle: 0,
                         easing: true,
                         value: 0,
-                        refValue: Cref,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                             return "Cr: " + value +  " / Cref:" + this.refValue;
+                            return "Cr: " + value;
                         },
                         color: function (value) {
-                            if (value < this.refValue) {
-                                return "#fffa50";
-                            } else if (value == this.refValue) {
-                                return "#5ee432";
-                            } else if (value < this.refValue) {
-                                return "#ef4655";
+                            if (value < 0.25) {
+                                return "#5ee432"; //Green
+                            } else if (value == 0.25) {
+                                return "#fffa50"; //Yellow
+                            } else if (value > 0.25) {
+                                return "#ef4655"; //Red
                             } else {
-                                return "#f7aa38";
+                                return "#f7aa38"; //Orange
                             }
                         }
                     }
@@ -82,19 +80,18 @@
                         easing: true,
                         value: 0,
                         viewBox: "0 0 100 57",
-                        refValue: Tref,
                         label: function (value) {
-                            return "Tr: " + value +  " / Tref:" + this.refValue;
+                            return "Tr: " + value;
                         },
                         color: function (value) {
-                            if (value < this.refValue) {
-                                return "#fffa50";
-                            } else if (value == this.refValue) {
-                                return "#5ee432";
-                            } else if (value < this.refValue) {
-                                return "#ef4655";
+                            if (value < 400) {
+                                return "#5ee432"; //Green
+                            } else if (value == 400) {
+                                return "#fffa50"; //Yellow
+                            } else if (value > 400) {
+                                return "#ef4655"; //Red
                             } else {
-                                return "#f7aa38";
+                                return "#f7aa38"; //Orange
                             }
                         }
                     }
@@ -114,7 +111,7 @@
                             return "Tc: " + value;
                         },
                         color: function (value) {
-                                return "#46f063";
+                            return "#46f063";
                         }
                     }
                 );
@@ -162,10 +159,10 @@
                 // update positions of graphical elements
                 // Cr : product specific residual concentration mixture of A and B
                 const Cr = parseFloat(data.state["Cr"].toFixed(2));
-                
+
                 // Cref: desired concentration
                 const Cref = parseFloat(data.state["Cref"].toFixed(2));
-                
+
                 // Tr : reactor temperature
                 const Tr = parseFloat(data.state["Tr"].toFixed(1));
 
@@ -174,14 +171,12 @@
 
                 // Tc : cooling jacket medium temperature
                 const Tc = parseFloat(data.state["Tc"].toFixed(1));
-                
+
                 // Tc_adjust: coolant temp adjustment
                 const Tc_Adjust = parseFloat(data.action["Tc_adjust"].toFixed(1));
-                
+
                 //Update gauge values
-                crgauge.refValue = Cref;
                 crgauge.setValue(Cr, 1);
-                trgauge.refValue = Tref;
                 trgauge.setValue(Tr, 1);
                 tcgauge.setValue(Tc, 1);
 
@@ -223,21 +218,21 @@
     <pre id="out" style="font-size: x-small; display: box; position: absolute"></pre>
     <p>
         Residual Concentration (Cr):
-        <div id="cr_gauge" class="gauge-container two" style="font-size: x-small"></div>
+    <div id="cr_gauge" class="gauge-container two" style="font-size: x-small"></div>
     </p>
     <p>
         <label id="cref_label">Desired Concentration:</label>
     </p>
     <p>
         Reactor cooling jacket coolant temperature (Tc):
-        <div id="tc_gauge" class="gauge-container two" style="font-size: x-small"></div>
+    <div id="tc_gauge" class="gauge-container two" style="font-size: x-small"></div>
     </p>
     <p>
         <label id="tc_adjust_label">Coolant Temp Adjustment:</label>
     </p>
     <p>
         Reactor Temperature (Tr):
-        <div id="tr_gauge" class="gauge-container two" style="font-size: x-small"></div>
+    <div id="tr_gauge" class="gauge-container two" style="font-size: x-small"></div>
     </p>
     <p>
         <label id="tref_label">Desired Temperature:</label>

@@ -87,7 +87,6 @@
       gaugeClass: "gauge",
       showValue: true,
       gaugeColor: null,
-      refValue: 0,
       label: function(val) {return Math.round(val);}
     };
 
@@ -209,7 +208,6 @@
           gaugeValuePath,
           label = opts.label,
           viewBox = opts.viewBox,
-          refValue, 
           instance;
 
       if(startAngle < endAngle) {
