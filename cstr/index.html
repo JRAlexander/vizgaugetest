@@ -31,8 +31,8 @@
 
         // setup the document
         function setup() {
-            svgDoc = document.getElementById("imported-svg").contentDocument;
-            if (svgDoc) {
+           // svgDoc = document.getElementById("imported-svg").contentDocument;
+         //   if (svgDoc) {
                 try {
                     crgauge = Gauge(
                         document.getElementById("cr_gauge"),
@@ -111,7 +111,7 @@
                 } catch (e) {
                     // ignore
                 }
-            }
+          //  }
             // loading text
             if (debug) {
                 const out = document.getElementById("out");
@@ -128,8 +128,8 @@
             const out = document.getElementById("out");
             out.textContent = str;
           //  }
-            svgDoc = document.getElementById("imported-svg").contentDocument;
-            if (svgDoc) {
+            //svgDoc = document.getElementById("imported-svg").contentDocument;
+            //if (svgDoc) {
                 try {
                     // update positions of graphical elements
                     // Cr : product specific residual concentration mixture of A and B
@@ -214,7 +214,7 @@
                     // ignore
                 }
             }
-        }
+        //}
         function init() {
             // on load
             window.addEventListener("load", () => {
