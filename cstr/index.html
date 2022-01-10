@@ -136,6 +136,9 @@
                     const Cr = parseNumber(data.state[crKey]);
                     const Tr = parseNumber(data.state[trKey]);
                     const Tc = parseNumber(data.state[tcKey]);
+                    const txtCr = document.getElementById("txtCr");
+                    const txtTr = document.getElementById("txtTr");
+                    const txtTc = document.getElementById("txtTc");
                     crgauge = Gauge(
                         document.getElementById("cr_gauge"),
                         {
@@ -206,10 +209,11 @@
                     );
                     //const tankLevelElem = svgDoc.getElementById("cr_gauge");
                     crgauge.setValue(Cr, 1);
-
+                    txtCr.value = Cr;
                     trgauge.setValue(Tr, 1);
-
+                    txtTr.value = Tr;
                     tcgauge.setValue(Tc, 1);
+                    txtTc.value = Tc;
                 } catch (e) {
                     // ignore
                 }
@@ -239,18 +243,21 @@
     <p>
         Residual Concentration (Cr):
     <div class="display">
+        <input type="text" id="txtCr">
         <div id="cr_gauge" class="gauge-container two"></div>
     </div>
     </p>
     <p>
         Reactor Temperature (Tr):
     <div class="display">
+        <input type="text" id="txtTr">
         <div id="tr_gauge" class="gauge-container two"></div>
     </div>
     </p>
     <p>
         Reactor cooling jacket coolant temperature (Tc):
     <div class="display">
+        <input type="text" id="txtTc">
         <div id="tc_gauge" class="gauge-container two"></div>
     </div>
     </p>
