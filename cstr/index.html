@@ -108,7 +108,6 @@
                         dialStartAngle: 180,
                         dialEndAngle: 0,
                         easing: true,
-                        limit: Cref,
                         value: 297.9798,
                         viewBox: "0 0 100 57",
                         label: function (value) {
@@ -180,7 +179,9 @@
                 const Tc_Adjust = parseFloat(data.action["Tc_adjust"].toFixed(1));
                 
                 //Update gauge values
+                crgauge.refValue = Cref;
                 crgauge.setValue(Cr, 1);
+                trgauge.refValue = Tref;
                 trgauge.setValue(Tr, 1);
                 tcgauge.setValue(Tc, 1);
 
