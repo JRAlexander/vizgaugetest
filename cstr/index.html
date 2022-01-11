@@ -1,6 +1,16 @@
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <title>Bonsai CSTR Visualizer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        @import url('./reset.css');
+        @import url('./styles.css');
+    </style>
+
     <script type="text/javascript" src="./src/gauge.js"> </script>
     <script language="JavaScript">
         /*
@@ -54,7 +64,7 @@
                         value: 0,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                            return "Cr: " + value + " kmol/m³";
+                            return value + " kmol/m³";
                         },
                         color: function (value) {
                             return "#f7aa38"; //Orange
@@ -73,7 +83,7 @@
                         value: 0,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                            return "Tr: " + value + "ºK";
+                            return value + " Kelvin";
                         },
                         color: function (value) {
                             if (value < 350) {
@@ -100,7 +110,7 @@
                         value: 297.9798,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                            return "Tc: " + value + "ºK";
+                            return value + " Kelvin";
                         },
                         color: function (value) {
                             return "#46f063";
@@ -173,25 +183,22 @@
 
                 //update labels
                 const trefLabel = document.getElementById("tref_label");
-                if (Tr > Tref) {
+                if (Tr >= 400) {
                     trefLabel.style.color = "red";
+                    trefLabel.innerHTML = "WARNING: THERMAL RUNAWAY";
                 }
                 else {
                     trefLabel.style.color = "rgb(153, 153, 153)";
+                    trefLabel.innerHTML = "Tref: " + Tref + " Kelvin";
                 }
-                trefLabel.innerHTML = "Tref: " + Tref + "ºK";
+
 
                 const crefLabel = document.getElementById("cref_label");
-                if (Cr > Cref) {
-                    crefLabel.style.color = "red";
-                }
-                else {
-                    crefLabel.style.color = "rgb(153, 153, 153)";
-                }
+                crefLabel.style.color = "rgb(153, 153, 153)";
                 crefLabel.innerHTML = "Cref: " + Cref + " kmol/m³";
 
                 const tcAdjustLabel = document.getElementById("tc_adjust_label");
-                tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust + "ºK";
+                tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust + " Kelvin";
 
             } catch (e) {
                 // ignore
@@ -215,39 +222,25 @@
             );
         }
     </script>
-    <style>
-        .flex-container {
-            display: flex;
-            flex-wrap: nowrap;
-        }
-
-        .flex-container>div {
-            background-color: #ffffff;
-            width: 300px;
-            margin: 10px;
-            text-align: center;
-            line-height: 75px;
-            font-size: x-large;
-            color: rgb(153, 153, 153);
-            font-family: sans-serif;
-            font-weight: normal;
-            text-anchor: middle;
-        }
-    </style>
 </head>
 
 <body>
     <pre id="out" style="font-size: x-small; display: box; position: absolute"></pre>
     <div class="flex-container">
-        <div id="cr_gauge" class="gauge-container two" style="font-size: x-small;  "></div>
-        <div id="tc_gauge" class="gauge-container two" style="font-size: x-small "></div>
+        <div id="cr_gauge" class="gauge-container two" style="font-size: x-small ">
+            <span id="cr_label" style="font-size: x-large" >Cr</span>
+        </div>
+        <div id="tc_gauge" class="gauge-container two" style="font-size: x-small ">
+            <span id="tc_label" style="font-size: x-large" >Tc</span>
+        </div>
         <div id="tr_gauge" class="gauge-container two" style="font-size: x-small">
+            <span id="tr_label" style="font-size: x-large " >Tr</span>
         </div>
     </div>
     <div class="flex-container">
-        <div><label id="cref_label">Cref:</label></div>
-        <div><label id="tc_adjust_label">Tc_adjust:</label></div>
-        <div><label id="tref_label">Tref:</label></div>
+        <div id="cref_label" class="ref-label">Cref:</div>
+        <div id="tc_adjust_label" class="ref-label ">Tc_adjust:</div>
+        <div id="tref_label" class="ref-label">Tref:</div>
     </div>
 
     <script language="JavaScript">
