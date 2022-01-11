@@ -173,13 +173,13 @@
 
                 //update labels
                 const trefLabel = document.getElementById("tref_label");
-                trefLabel.innerHTML = "Desired Temperature: " + Tref;
+                trefLabel.innerHTML = "Tref: " + Tref;
 
                 const crefLabel = document.getElementById("cref_label");
-                crefLabel.innerHTML = "Desired concentration: " + Cref;
+                crefLabel.innerHTML = "Cref: " + Cref;
 
                 const tcAdjustLabel = document.getElementById("tc_adjust_label");
-                tcAdjustLabel.innerHTML = "Coolant Temp Adjustment: " + Tc_Adjust;
+                tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust;
 
             } catch (e) {
                 // ignore
@@ -203,31 +203,38 @@
             );
         }
     </script>
+     <style>
+        .flex-container {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .flex-container>div {
+            background-color: #f1f1f1;
+            width: 300px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size:100%; 
+            font-family: sans-serif; 
+            font-weight: normal;
+            text-anchor: middle;
+        }
+    </style>
+</head>   
 <body>
     <pre id="out" style="font-size: x-small; display: box; position: absolute"></pre>
-    
-    <p>
-        Residual Concentration (Cr):
-    <div id="cr_gauge" class="gauge-container two" style="font-size: x-small"></div>
-    </p>
-    <p>
-        <label id="cref_label">Desired Concentration:</label>
-    </p>
-    <p>
-        Reactor cooling jacket coolant temperature (Tc):
-    <div id="tc_gauge" class="gauge-container two" style="font-size: x-small "></div>
-    </p>
-    <p>
-        <label id="tc_adjust_label">Coolant Temp Adjustment:</label>
-    </p>
-    <p>
-        Reactor Temperature (Tr):
-    <div id="tr_gauge" class="gauge-container two" style="font-size: x-small">
+    <div class="flex-container">
+        <div id="cr_gauge" class="gauge-container two" style="font-size: x-small;  "></div>
+        <div id="tc_gauge" class="gauge-container two" style="font-size: x-small "></div>
+        <div id="tr_gauge" class="gauge-container two" style="font-size: x-small">
+        </div>
     </div>
-    </p>
-    <p>
-        <label id="tref_label">Desired Temperature:</label>
-    </p>
+    <div class="flex-container">
+        <div ><label id="cref_label">Cref:</label></div>
+        <div><label id="tc_adjust_label">Tc_adjust:</label></div>
+        <div><label id="tref_label">Tref:</label></div>
+    </div>   
 
     <script language="JavaScript">
         init();
