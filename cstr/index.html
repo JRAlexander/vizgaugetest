@@ -54,7 +54,7 @@
                         value: 0,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                            return "Cr: " + value;
+                            return "Cr: " + value + " kmol/m³";
                         },
                         color: function (value) {
                                 return "#f7aa38"; //Orange
@@ -192,7 +192,7 @@
                 {
                     crefLabel.style.color = "rgb(153, 153, 153)";
                 }
-                crefLabel.innerHTML = "Cref: " + Cref;
+                crefLabel.innerHTML = "Cref: " + Cref + " kmol/m³";
 
                 const tcAdjustLabel = document.getElementById("tc_adjust_label");
                 tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust + "ºK";
