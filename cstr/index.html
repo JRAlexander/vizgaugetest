@@ -54,7 +54,7 @@
                         value: 0,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                            return "Cr: " + value;
+                            return "Cr: " + value + "ºK";;
                         },
                         color: function (value) {
                                 return "#f7aa38"; //Orange
@@ -73,7 +73,7 @@
                         value: 0,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                            return "Tr: " + value;
+                            return "Tr: " + value + "ºK";
                         },
                         color: function (value) {
                             if (value < 400) {
@@ -100,7 +100,7 @@
                         value: 297.9798,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                            return "Tc: " + value;
+                            return "Tc: " + value +"ºK";
                         },
                         color: function (value) {
                             return "#46f063";
@@ -181,7 +181,7 @@
                 {
                     trefLabel.style.color = "rgb(153, 153, 153)";
                 }
-                trefLabel.innerHTML = "Tref: " + Tref;
+                trefLabel.innerHTML = "Tref: " + Tref + "ºK";
 
                 const crefLabel = document.getElementById("cref_label");
                 if (Cr > Cref)
@@ -192,10 +192,10 @@
                 {
                     crefLabel.style.color = "rgb(153, 153, 153)";
                 }
-                crefLabel.innerHTML = "Cref: " + Cref;
+                crefLabel.innerHTML = "Cref: " + Cref + "ºK";
 
                 const tcAdjustLabel = document.getElementById("tc_adjust_label");
-                tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust;
+                tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust + "ºK";
 
             } catch (e) {
                 // ignore
@@ -231,7 +231,7 @@
             margin: 10px;
             text-align: center;
             line-height: 75px;
-            font-size:large; 
+            font-size:larger; 
             color: rgb(153, 153, 153);
             font-family: sans-serif; 
             font-weight: normal;
