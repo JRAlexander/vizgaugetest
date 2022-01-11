@@ -173,9 +173,25 @@
 
                 //update labels
                 const trefLabel = document.getElementById("tref_label");
+                if (Tr > Tref)
+                {
+                    trefLabel.style.color = "red";
+                }
+                else
+                {
+                    trefLabel.style.color = "rgb(153, 153, 153)";
+                }
                 trefLabel.innerHTML = "Tref: " + Tref;
 
                 const crefLabel = document.getElementById("cref_label");
+                if (Cr > Cref)
+                {
+                    crefLabel.style.color = "red";
+                }
+                else
+                {
+                    crefLabel.style.color = "rgb(153, 153, 153)";
+                }
                 crefLabel.innerHTML = "Cref: " + Cref;
 
                 const tcAdjustLabel = document.getElementById("tc_adjust_label");
@@ -216,7 +232,7 @@
             text-align: center;
             line-height: 75px;
             font-size:large; 
-            fill: rgb(153, 153, 153);
+            color: rgb(153, 153, 153);
             font-family: sans-serif; 
             font-weight: normal;
             text-anchor: middle;
