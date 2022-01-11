@@ -57,7 +57,7 @@
                             return "Cr: " + value + " kmol/m³";
                         },
                         color: function (value) {
-                                return "#f7aa38"; //Orange
+                            return "#f7aa38"; //Orange
                         }
                     }
                 );
@@ -76,11 +76,11 @@
                             return "Tr: " + value + "ºK";
                         },
                         color: function (value) {
-                            if (value < 400) {
+                            if (value < 350) {
                                 return "#5ee432"; //Green
-                            } else if (value == 400) {
+                            } else if (value < 400) {
                                 return "#fffa50"; //Yellow
-                            } else if (value > 400) {
+                            } else if (value >= 400) {
                                 return "#ef4655"; //Red
                             } else {
                                 return "#f7aa38"; //Orange
@@ -100,7 +100,7 @@
                         value: 297.9798,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                            return "Tc: " + value +"ºK";
+                            return "Tc: " + value + "ºK";
                         },
                         color: function (value) {
                             return "#46f063";
@@ -173,23 +173,19 @@
 
                 //update labels
                 const trefLabel = document.getElementById("tref_label");
-                if (Tr > Tref)
-                {
+                if (Tr > Tref) {
                     trefLabel.style.color = "red";
                 }
-                else
-                {
+                else {
                     trefLabel.style.color = "rgb(153, 153, 153)";
                 }
                 trefLabel.innerHTML = "Tref: " + Tref + "ºK";
 
                 const crefLabel = document.getElementById("cref_label");
-                if (Cr > Cref)
-                {
+                if (Cr > Cref) {
                     crefLabel.style.color = "red";
                 }
-                else
-                {
+                else {
                     crefLabel.style.color = "rgb(153, 153, 153)";
                 }
                 crefLabel.innerHTML = "Cref: " + Cref + " kmol/m³";
@@ -219,7 +215,7 @@
             );
         }
     </script>
-     <style>
+    <style>
         .flex-container {
             display: flex;
             flex-wrap: nowrap;
@@ -231,14 +227,15 @@
             margin: 10px;
             text-align: center;
             line-height: 75px;
-            font-size: x-large; 
+            font-size: x-large;
             color: rgb(153, 153, 153);
-            font-family: sans-serif; 
+            font-family: sans-serif;
             font-weight: normal;
             text-anchor: middle;
         }
     </style>
-</head>   
+</head>
+
 <body>
     <pre id="out" style="font-size: x-small; display: box; position: absolute"></pre>
     <div class="flex-container">
@@ -248,10 +245,10 @@
         </div>
     </div>
     <div class="flex-container">
-        <div ><label id="cref_label">Cref:</label></div>
+        <div><label id="cref_label">Cref:</label></div>
         <div><label id="tc_adjust_label">Tc_adjust:</label></div>
         <div><label id="tref_label">Tref:</label></div>
-    </div>   
+    </div>
 
     <script language="JavaScript">
         init();
