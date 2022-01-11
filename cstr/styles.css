@@ -134,12 +134,12 @@
   }
   .gauge-container.two > .gauge > .dial {
     stroke: #999999;
-    stroke-width: 6;
+    stroke-width: 10;
   }
   .gauge-container.two > .gauge > .value {
     /*stroke: orange;*/
     stroke-dasharray: none;
-    stroke-width: 4;
+    stroke-width: 8;
   }
 
   .ref-label {
