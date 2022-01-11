@@ -236,7 +236,7 @@
           fill: "#999",
           "class": valueTextClass,
           "font-size": "100%",
-          "font-family": "sans-serif",
+        //   "font-family": "sans-serif",
           "font-weight": "normal",
           "text-anchor": "middle",
           "alignment-baseline": "middle",

@@ -62,7 +62,7 @@
   }
   
   body {
-    font-family: system-ui, sans-serif;
+    font-family: monospace;
   }
   
   .container {
@@ -107,7 +107,6 @@
     top: 0;
     display: inline-block;
     background: rgba(0,0,0,0.5); 
-    font-family: monospace;
     font-size: 1.2em;
     padding: 5px 10px;
   }
@@ -123,8 +122,8 @@
     fill: rgba(0,0,0,0);
   }
   .gauge-container > .gauge .value-text {
-    font-family: sans-serif;
-    /* font-weight: bold;  */
+    /* font-family: sans-serif;
+    font-weight: bold;  */
     font-size: 0.8em;
   }
   
@@ -173,7 +172,6 @@
     font-size: x-large;
     border-radius: 1rem;
     color: rgb(153, 153, 153);
-    font-family: sans-serif;
     font-weight: normal;
     text-anchor: middle;
 }
