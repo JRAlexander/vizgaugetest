@@ -198,6 +198,15 @@
                 crefLabel.innerHTML = "Cref: " + Cref + " kmol/m³";
 
                 const tcAdjustLabel = document.getElementById("tc_adjust_label");
+
+                //check for negative number, if not add a space
+                if (Math.sign(num) === -1) {
+                    tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust + " Kelvin";
+                }
+                else {
+                    tcAdjustLabel.innerHTML = "Tc_adjust: \ " + Tc_Adjust + " Kelvin";
+                }
+
                 tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust + " Kelvin";
 
             } catch (e) {
