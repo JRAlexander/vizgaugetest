@@ -83,7 +83,7 @@
                         value: 0,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                            return value + " Kelvin";
+                            return value.toFixed(1) + " K";
                         },
                         color: function (value) {
                             if (value < 350) {
@@ -110,7 +110,7 @@
                         value: 297.9798,
                         viewBox: "0 0 100 57",
                         label: function (value) {
-                            return value + " Kelvin";
+                            return value.toFixed(1) + " K";
                         },
                         color: function (value) {
                             return "#a9e2ea";
@@ -137,12 +137,12 @@
                 state: {
                     Cr: 2.142201781772368,
                     Cref: 2,
-                    Tc: 297.9798,
+                    Tc: 297, //.9798,
                     Tr: 340,
-                    Tref: 373.1311262173828
+                    Tref: 373  //.1311262173828
                 },
                 action: {
-                    Tc_adjust: 0.12269001454114914
+                    Tc_adjust: 5//0.12269001454114914
                 },
             });
         }
