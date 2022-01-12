@@ -189,22 +189,22 @@
                 }
                 else {
                     trefLabel.style.color = "rgb(153, 153, 153)";
-                    trefLabel.innerHTML = "Tref: " + Tref + " K";
+                    trefLabel.innerHTML = "Tref: " + Tref.toFixed(1) + " K";
                 }
 
 
                 const crefLabel = document.getElementById("cref_label");
                 crefLabel.style.color = "rgb(153, 153, 153)";
-                crefLabel.innerHTML = "Cref: " + Cref + " kmol/m³";
+                crefLabel.innerHTML = "Cref: " + Cref.toFixed(2) + " kmol/m³";
 
                 const tcAdjustLabel = document.getElementById("tc_adjust_label");
 
                 //check for negative number, if not add a space
                 if (Tc_Adjust < 0) {
-                    tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust + " K";
+                    tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust.toFixed(1) + " K";
                 }
                 else {
-                    tcAdjustLabel.innerHTML = "Tc_adjust: &nbsp" + Tc_Adjust + " K";
+                    tcAdjustLabel.innerHTML = "Tc_adjust: &nbsp" + Tc_Adjust.toFixed(1) + " K";
                 }
 
             } catch (e) {
