@@ -189,7 +189,7 @@
                 }
                 else {
                     trefLabel.style.color = "rgb(153, 153, 153)";
-                    trefLabel.innerHTML = "Tref: " + Tref + " Kelvin";
+                    trefLabel.innerHTML = "Tref: " + Tref + " K";
                 }
 
 
@@ -200,14 +200,12 @@
                 const tcAdjustLabel = document.getElementById("tc_adjust_label");
 
                 //check for negative number, if not add a space
-                if (Math.sign(Tc_Adjust) === -1) {
-                    tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust + " Kelvin";
+                if (Tc_Adjust < 0) {
+                    tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust + " K";
                 }
                 else {
-                    tcAdjustLabel.innerHTML = "Tc_adjust: "+ "\ " + Tc_Adjust + " Kelvin";
+                    tcAdjustLabel.innerHTML = "Tc_adjust: &nbsp" + Tc_Adjust + " K";
                 }
-
-                tcAdjustLabel.innerHTML = "Tc_adjust: " + Tc_Adjust + " Kelvin";
 
             } catch (e) {
                 // ignore
@@ -237,18 +235,19 @@
     <pre id="out" style="font-size: x-small; display: box; position: absolute"></pre>
     <div class="flex-container">
         <div id="cr_gauge" class="gauge-container two" style="font-size: x-small ">
-            <span id="cr_label" style="font-size: x-large" >Cr</span>
+            <span id="cr_label" style="font-size: x-large">Cr</span>
         </div>
         <div id="tc_gauge" class="gauge-container two" style="font-size: x-small ">
-            <span id="tc_label" style="font-size: x-large" >Tc</span>
+            <span id="tc_label" style="font-size: x-large">Tc</span>
         </div>
         <div id="tr_gauge" class="gauge-container two" style="font-size: x-small">
-            <span id="tr_label" style="font-size: x-large " >Tr</span>
+            <span id="tr_label" style="font-size: x-large ">Tr</span>
         </div>
     </div>
     <div class="flex-container">
         <div id="cref_label" class="ref-label">Cref:</div>
-        <div id="tc_adjust_label" class="ref-label blue" style="font-weight: bold; background-color: var(--blue)">Tc_adjust:</div>
+        <div id="tc_adjust_label" class="ref-label blue" style="font-weight: bold; background-color: var(--blue)">
+            Tc_adjust:</div>
         <div id="tref_label" class="ref-label">Tref:</div>
     </div>
 
