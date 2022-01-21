@@ -1,46 +1,55 @@
 <html>
-  <head>
+
+<head>
     <script language="JavaScript">
 
-      function setup() {
-        const out = document.getElementById("out");
-        out.textContent = "Waiting...";
-      }
+        function setup() {
+            // adjust our colors based upon theme.
+            if (darkMode) {
+                document.body.style.backgroundColor = "#333";
+                document.body.style.color = "white";
+            }
 
-      // update the visualization from state and action data
-      function update(data) {
-        // convert message to formatted JSON text for display
-        const str = JSON.stringify(data, null, 2);
-        const out = document.getElementById("out");
-        out.textContent = str;
-      }
+            const out = document.getElementById("out");
+            out.textContent = "Waiting...";
+            if (darkMode) {
+                out.style.color = "white";
+            }
+        }
 
-      function init() {
-        // on load
-        window.addEventListener("load", () => {
-          setup();
-        });
+        // update the visualization from state and action data
+        function update(data) {
+            // convert message to formatted JSON text for display
+            const str = JSON.stringify(data, null, 2);
+            const out = document.getElementById("out");
+            out.textContent = str;
+        }
 
-        // on message
-        window.addEventListener(
-          "message",
-          (event) => {
-            const data = JSON.parse(event.data);
-            update(data);
-          },
-          false
-        );
-      }
+        function init() {
+            // on load
+            window.addEventListener("load", () => {
+                setup();
+            });
+
+            // on message
+            window.addEventListener(
+                "message",
+                (event) => {
+                    const data = JSON.parse(event.data);
+                    update(data);
+                },
+                false
+            );
+        }
     </script>
-  </head>
-  <body>
+</head>
+
+<body>
     <p>debug viewer only • no visualizer</p>
-    <pre
-      id="out"
-      style="font-size: x-small; display: box; position: absolute"
-    ></pre>
+    <pre id="out" style="font-size: x-small; display: box; position: absolute"></pre>
     <script language="JavaScript">
-      init();
+        init();
     </script>
-  </body>
+</body>
+
 </html>
