@@ -2,18 +2,21 @@
 
 <head>
     <script language="JavaScript">
-
+      const params = new URLSearchParams(window.location.search);
+      const darkMode = params.get("_theme") === "dark";
         function setup() {
             // adjust our colors based upon theme.
-            if (darkMode) {
+/*             if (darkMode) {
                 document.body.style.backgroundColor = "#333";
                 document.body.style.color = "white";
-            }
+            } */
 
             const out = document.getElementById("out");
             out.textContent = "Waiting...";
             if (darkMode) {
                 out.style.color = "white";
+                document.body.style.color = "white";
+                out.textContent = "Darkmode";
             }
         }
 
